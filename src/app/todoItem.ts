@@ -5,6 +5,7 @@ export class TodoItem{
         public status: string,
         public dueTo: string,
         public who: string,
+        public time: number,
         public moreInfo? : string
     ){}
 }

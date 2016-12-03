@@ -16,8 +16,9 @@ export class TodoFormComponent {
     items: FirebaseListObservable<any>;
     queries: FirebaseListObservable<any[]>;
     deadlineSubject: Subject<any>;
-    af: AngularFire;
+    myAf: AngularFire;
     constructor(af: AngularFire){
+        this.myAf = af;
         this.items = af.database.list('/todoItems');
         // and add queries!!
         this.queries = af.database.list('/todoItems', {
@@ -35,7 +36,7 @@ export class TodoFormComponent {
     }
 
     sortByStatus(){
-        this.queries = this.af.database.list('/todoItems', {
+        this.queries = this.myAf.database.list('/todoItems', {
             query: {
                 orderByChild: 'status',
                 // equalTo: this.status
@@ -44,7 +45,7 @@ export class TodoFormComponent {
     }
 
     sortByDeadline(){
-        this.queries = this.af.database.list('/todoItems', {
+        this.queries = this.myAf.database.list('/todoItems', {
             query: {
                 orderByChild: 'status',
                 // equalTo: this.status
@@ -56,8 +57,9 @@ export class TodoFormComponent {
 
     dueDates = ['Today','Tomorrow', 'This week', 'Later'];
     status = ['Pending', 'In progress', 'Done'];
+    time = Date.now();
     
-    model = new TodoItem(0, '', this.status[0], this.dueDates[0], 'Sadan');
+    model = new TodoItem(0, '', this.status[0], this.dueDates[0], 'Sadan', this.time);
     
     submitted = false;
 
@@ -73,7 +75,8 @@ export class TodoFormComponent {
             name: this.model.name, 
             status: this.model.status, 
             deadline: this.model.dueTo, 
-            who: this.model.who
+            who: this.model.who,
+            time: this.time
         });
 
         this.model.name = '';
@@ -109,7 +112,7 @@ export class TodoFormComponent {
     }
 
     addTask(){
-        this.model = new TodoItem(2, 'this shall come from outside', this.status[0], this.dueDates[0], this.model.who);
+        this.model = new TodoItem(2, 'this shall come from outside', this.status[0], this.dueDates[0], this.model.who, this.time);
     }
 
     get diagnostics(){

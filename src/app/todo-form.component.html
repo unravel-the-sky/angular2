@@ -99,10 +99,10 @@
         <table class="table table-hover">
             <th> Task: </th>
             <th> Who: </th>
-            <th ng-click="sortByStatus()"> Status: </th>
-            <th ng-click="sortByDeadline()"> Deadline: </th>
+            <th (click)="sortByStatus()"> Status: </th>
+            <th (click)="sortByDeadline()"> Deadline: </th>
             <th></th>
-
+            
             <tr style="cursor: move;" [ngClass]="{success: item.status == 'Done', 
                             warning: item.status == 'In progress', 
                             danger: item.status == 'Pending'}"

@@ -48,43 +48,6 @@
 
                 </div>
             </div>
-            <!--<div class="form-group">
-                <label for="name">To do Item</label>
-                <input type="text" class="form-control" id="name" 
-                        required 
-                        [(ngModel)]="model.name" name="task"
-                        #name="ngModel"
-                        placeholder="enter to do item" (focus)="onFocus()">
-                        <div [hidden]="name.valid || name.pristine"
-                            class="alert alert-danger">
-                            
-                            you need to do something, you slacker!
-
-                        </div>
-                        task: {{model.name}}
-            </div>-->
-            <!--<div class="form-group">
-                <label for="status">Status</label>
-                <select class="form-control" id="status" 
-                        [(ngModel)]="model.status" name="status" 
-                        required>
-                    <option *ngFor="let s of status" [value]="s">
-                        {{s}}
-                    </option>
-                </select>
-            </div>-->
-            <!--<div class="form-grup">
-                <label for="deadline">Deadline</label>
-                <select class="form-control" id="deadline" 
-                            [(ngModel)]="model.dueTo" name="deadline"
-                            required>
-                    <option *ngFor="let d of dueDates" [value]="d">
-                        {{d}}
-                    </option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-default" 
-                        [disabled]="!todoForm.form.valid">Submit task</button>-->
             <button id="openModalButton" type="button" 
                 class="btn btn-default" 
                 data-toggle="modal" 

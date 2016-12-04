@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, HostListener } from '@angular/core';
 import { TodoItem } from './todoItem';
 import { AngularFire, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2';
 import { Subject } from 'rxjs/Subject';
@@ -13,6 +13,7 @@ import "rxjs/add/operator/map";
     styleUrls: ['todo-form.component.css']
 })
 export class TodoFormComponent {
+    mouseMove = new EventEmitter();
     items: FirebaseListObservable<any>;
     queries: FirebaseListObservable<any[]>;
     deadlineSubject: Subject<any>;
@@ -27,9 +28,17 @@ export class TodoFormComponent {
                 // equalTo: this.status
             }
         }).map((array) => array.reverse()) as FirebaseListObservable<any[]>;
+
+        
     }
 
-    ngOnInit(){}
+    ngOnInit(){
+    }
+
+    @HostListener('document:mousemove', ['event'])
+    onMouseMove(event){
+        this.mouseMove.emit(event);
+    }
 
     filterBy(deadline: string){
         this.deadlineSubject.next(deadline);
